@@ -1,0 +1,58 @@
+<div>
+  <div className="container-fluid main-container">
+    <div className="col-md-6 col-md-offset-1 dashboard-main-content">
+      <div className="posts-wrapper animated fadeInUp" data-behavior="endless-scroll"
+        data-animation="fadeInUp-fadeOutDown">
+        <ul>
+          <li *ngFor="let article of articles">
+            <div class="post-panel">
+              <div class="post-metadata">
+                <img alt="Author Avatar" class="avatar-image" [attr.src]="article.author.provider_pic" height="40"
+                  width="40" />
+                <div class="post-info">
+                  <div data-react-class="PopoverLink">
+                    <span class="popover-link">
+                      <a href="/profile/{{article.author._id}}">{{article.author.name}} </a>
+                    </span>
+                  </div>
+                  <small>Posted {{article.createdAt}}</small>
+                </div>
+              </div>
+
+              <div class="post-picture-wrapper" *ngIf="article.feature_img.length > 0">
+                <img [attr.src]="article.feature_img" alt="Article Thumbnail" />
+              </div>
+              <div class="main-body">
+                <h3 class="post-title"><a href="/articleview/{{article._id}}">{{article.title}}</a></h3>
+                <div class="post-body">
+                  <p class="" [innerHTML]="article.description"></p>
+                </div>
+                <a class="read-more" href="/articleview/{{article._id}}">Read more</a>
+              </div>
+              <div class="post-stats clearfix">
+                <div class="pull-left">
+                  <div class="like-button-wrapper">
+                    <button class="like-button" (click)="clap(article)">
+                      <i class="fa fa-heart-o"></i><span class="hide-text">Like</span>
+                    </button>
+                    <span class="like-count">{{article.claps}}</span>
+                  </div>
+                </div>
+                <div class="pull-right">
+                  <div class="bookmark-button-wrapper">
+                    <button class="bookmark-button" type="submit" (click)="bookmark(article)">
+                      <span class="icon-bookmark-o"></span><span class="hide-text">Bookmark</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <!--TODO: aside column-->
+    </div>
+  </div>
+</div>
